@@ -1,44 +1,38 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Hometask_1
 {
     [TestFixture]
     public class Task_1
     {
-        public List<object> GetIntegersFromList(List<object> mixedList)
+        public List<int> GetIntegersFromList(List<object> initial_list) =>
+            initial_list.Where(ob => ob is int).Select(ob => (int)ob).ToList<int>();
+        [Test]
+        public void Test1()
         {
-            List<object> numbersOnly = new List<object>();
-            for (int i = 0; i < mixedList.Count; i++)
-            {
-                if (mixedList[i].GetType() == typeof(int))
-                {
-                    numbersOnly.Add(mixedList[i]);
-                }
-            }
-            return numbersOnly;
+            var list = new List<object>() { 1, 2, 'a', 'b' };
+            var expected = new List<int>() { 1, 2 };
+            var result = GetIntegersFromList(list);
+            Assert.AreEqual(expected, result);
         }
         [Test]
-        public void GetIntegersFromListTest1()
+        public void Test2()
         {
-            List<object> expected = new List<object>() { 1, 2 };
-            List<object> actual = GetIntegersFromList(new List<object>() { 1, 2, 'a', 'b' });
-            Assert.AreEqual(expected, actual);
+            var list = new List<object>() { 1, 2, 'a', 'b', 0, 15 };
+            var expected = new List<int>() { 1, 2, 0, 15 };
+            var result = GetIntegersFromList(list);
+            Assert.AreEqual(expected, result);
         }
         [Test]
-        public void GetIntegersFromListTest2()
+        public void Test3()
         {
-            List<object> expected = new List<object>() { 1, 2, 0, 15 };
-            List<object> actual = GetIntegersFromList(new List<object>() { 1, 2, 'a', 'b', 0, 15 });
-            Assert.AreEqual(expected, actual);
-        }
-        [Test]
-        public void GetIntegersFromListTest3()
-        {
-            List<object> expected = new List<object>() { 1, 2, 231 };
-            List<object> actual = GetIntegersFromList(new List<object>() { 1, 2, 'a', 'b', "aasf", '1', "123", 231 });
-            Assert.AreEqual(expected, actual);
+            var list = new List<object>() { 1, 2, 'a', 'b', "aasf", '1', "123", 231 };
+            var expected = new List<int>() { 1, 2, 231 };
+            var result = GetIntegersFromList(list);
+            Assert.AreEqual(expected, result);
         }
     }
 }

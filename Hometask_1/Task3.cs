@@ -1,50 +1,35 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Text;
+using NUnit.Framework;
 
 namespace Hometask_1
 {
     [TestFixture]
-    public class Task_3
+    class Task_3
     {
-        public int digital_root(int input)
+        public int digital_root(int number)
         {
-            if (input < 10)
+            if (number < 0)
+                number *= -1;
+            if (number < 10)
+                return number;
+            var reduced_number = 0;
+            while (number != 0)
             {
-                return input;
+                reduced_number += number % 10;
+                number /= 10;
             }
-            char[] strInput = input.ToString().ToCharArray();
-            int sum = 0;
-            for (int i = 0; i < strInput.Length; i++)
-            {
-                sum += Int32.Parse((strInput[i].ToString()));
-            }
-            return digital_root(sum);
+            return digital_root(reduced_number);
         }
-        [Test]
-        public void digital_root1()
+        [TestCase(942, 6)]
+        [TestCase(132189, 6)]
+        [TestCase(0, 0)]
+        [TestCase(-1919, 2)]
+        public void TestDigitalRoot(int value, int expected)
         {
-            Assert.AreEqual(7, digital_root(16));
-        }
-        [Test]
-        public void digital_root2()
-        {
-            Assert.AreEqual(6, digital_root(942));
-        }
-        [Test]
-        public void digital_root3()
-        {
-            Assert.AreEqual(6, digital_root(132189));
-        }
-        [Test]
-        public void digital_root4()
-        {
-            Assert.AreEqual(2, digital_root(493193));
-        }
-        [Test]
-        public void digital_root5()
-        {
-            Assert.AreEqual(0, digital_root(0));
+            var result = digital_root(value);
+            Assert.AreEqual(expected, result);
         }
     }
 }

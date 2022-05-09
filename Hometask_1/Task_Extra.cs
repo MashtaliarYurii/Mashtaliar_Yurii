@@ -1,42 +1,56 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Hometask_1
 {
     [TestFixture]
-    public class Task_Extra
+    class Task_Extra
     {
-        public int nextBigger(int input)
+        public int GetNextBiggerNumber(int number)
         {
-            char[] inputStr = input.ToString().ToCharArray();
-            for (int i = inputStr.Length - 1; i > 0; i--)
+            var number_copy = number;
+            var current_digit_order = 0;
+            while (number_copy / 10 != 0)
             {
-                if ((int)inputStr[i] > (int)inputStr[i - 1])
+                var current_digit = number_copy % 10;
+                var previous_digit_order = current_digit_order + 1;
+                while (number_copy / 10 != 0)
                 {
-                    char tempswap = inputStr[i];
-                    inputStr[i] = inputStr[i - 1];
-                    inputStr[i - 1] = tempswap;
-                    break;
+                    number_copy /= 10;
+                    var previous_digit = number_copy % 10;
+                    if (previous_digit < current_digit)
+                    {
+                        for (int ord = current_digit_order; ord < previous_digit_order; ord++)
+                            number += (int)(9 * Math.Pow(10, ord) * (current_digit - previous_digit));
+                        return number;
+                    }
+                    previous_digit_order++;
+
                 }
+                current_digit_order++;
+                number_copy = (int)(number / Math.Pow(10, current_digit_order));
+
             }
-            int result = Int32.Parse(string.Join("", inputStr));
-            return result != input ? result : -1;
+
+            return -1;
         }
-        [Test]
-        public void nextBiggerTest1()
+        [TestCase(0, -1)]
+        [TestCase(10, -1)]
+        public void TestNegativeOne(int value, int expected)
         {
-            Assert.AreEqual(2071, nextBigger(2017));
+            var result = GetNextBiggerNumber(value);
+            Assert.AreEqual(expected, result);
         }
-        [Test]
-        public void nextBiggerTest2()
+        [TestCase(12, 21)]
+        [TestCase(513, 531)]
+        [TestCase(2017, 2071)]
+        [TestCase(1111101, 1111110)]
+        public void TestChangedNumber(int value, int expected)
         {
-            Assert.AreEqual(2202, nextBigger(2022));
-        }
-        [Test]
-        public void nextBiggerTest3()
-        {
-            Assert.AreEqual(-1, nextBigger(9731));
+            var result = GetNextBiggerNumber(value);
+            Assert.AreEqual(expected, result);
         }
     }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W9JSue+IjMw3gvB2DNlUbCBrxT/UmVtdZTy4HqN0HdejW7YU7TaHfLIpUmongCRusBNtxuZcHERG/EXIZNO+Hw==",
+  "dgSpecHash": "hU5l+GhZvSVJfqZ/IWUlJLKChWl1TDXhUS+9Pe/Qfwv+baN9yGCbtOubimTATgxooILe+Gi6hB4Q2yeMNC6mgQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Yurii\\Source\\Repos\\MashtaliarYurii\\Mashtaliar_Yurii\\Hometask_1\\Hometask_1.csproj",
+  "projectFilePath": "C:\\Users\\Yurii\\source\\repos\\MashtaliarYurii\\Mashtaliar_Yurii\\Hometask_1\\Hometask_1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Yurii\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",
     "C:\\Users\\Yurii\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",

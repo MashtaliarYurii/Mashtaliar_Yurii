@@ -1,38 +1,31 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Hometask_1
 {
     [TestFixture]
-    public class Task_Extra_2
+    class Task_Extra_2
     {
-
-        public string IP_address(long k)
+        public string GetIPv4(uint number)
         {
-            //long x = ((k - k % 256) / 256) % 256); 
-            string[] str1 = { ((k - (((k - k%256 - (((k- k % 256) / (256)))%256)/(256*256))%256) - (((k- k % 256) / (256))%256) - k%256)/(256*256*256)).ToString(),
-                    (((k - k%256 - (((k- k % 256) / (256)))%256)/(256*256))%256).ToString(),
-                    (((k- k % 256) / (256))%256).ToString(),
-                    (k%256).ToString()};
-
-            return string.Join('.', str1);
+            var ipv4 = new List<string>();
+            var divider = (uint)(Math.Pow(2, 8));
+            for (int i = 0; i < 4; i++)
+            {
+                ipv4.Insert(0, (number % divider).ToString());
+                number /= divider;
+            }
+            return String.Join('.', ipv4);
         }
-        [Test]
-        public void Test_IP1()
+        [TestCase(2149583361, "128.32.10.1")]
+        [TestCase((uint)32, "0.0.0.32")]
+        [TestCase((uint)0, "0.0.0.0")]
+        public void TestTransformation(uint number, string expected)
         {
-            Assert.AreEqual("128.32.10.1", IP_address(2149583361));
-        }
-
-        [Test]
-        public void Test_IP2()
-        {
-            Assert.AreEqual("0.0.0.32", IP_address(32));
-        }
-        [Test]
-        public void Test_IP3()
-        {
-            Assert.AreEqual("0.0.0.0", IP_address(0));
+            var result = GetIPv4(number);
+            Assert.AreEqual(expected, result);
         }
     }
 }

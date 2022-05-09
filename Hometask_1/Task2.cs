@@ -1,39 +1,39 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Text;
 
 namespace Hometask_1
 {
     [TestFixture]
     public class Task_2
     {
-        public char FirstNonRepeatingLetter(string str)
+        private class LetterEqualityComparer : IEqualityComparer<char>
         {
-            string stringHelper = str;
-            str = str.ToLower();
-            for (int i = 0; i < str.Length - 1; i++)
-            {
-                if (!((str.Substring(0, i) + str.Substring(i + 1)).Contains(str[i])))
-                {
-                    return stringHelper[i];
-                }
-            }
-            return ' ';
+            public bool Equals(char x, char y) => Char.ToLower(x).Equals(Char.ToLower(y));
+
+            public int GetHashCode([DisallowNull] char obj) => Char.ToLower(obj).GetHashCode();
         }
-        [Test]
-        public void FirstNonRepeatingLetter1()
+        public char first_non_repeating_letter(string str)
         {
-            Assert.AreEqual('T', FirstNonRepeatingLetter("sTreSS"));
+            if (str.Equals(string.Empty)) return default;
+            var characters = new List<char>(str);
+            var lower_str = str.ToLower();
+            var repetitive_characters =
+                new List<char>(lower_str).GroupBy(c => c).Where(c => c.Count() > 1).Select(c => c.Key);
+            var unique = characters.Except(repetitive_characters, new LetterEqualityComparer());
+            return unique.FirstOrDefault();
         }
-        [Test]
-        public void FirstNonRepeatingLetter2()
+        [TestCase("sTreSS", 'T')]
+        [TestCase("stress", 't')]
+        [TestCase("", '\0')]
+        [TestCase("QWERTYqwerty", '\0')]
+        public void TestFirstNonRepeatingLetter(string str, char expected)
         {
-            Assert.AreEqual(' ', FirstNonRepeatingLetter("sTreSSret"));
-        }
-        [Test]
-        public void FirstNonRepeatingLetter3()
-        {
-            Assert.AreEqual('K', FirstNonRepeatingLetter("Kaalluupptt"));
+            var result = first_non_repeating_letter(str);
+            Assert.AreEqual(expected, result);
         }
     }
 }

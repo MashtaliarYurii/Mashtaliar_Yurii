@@ -1,41 +1,30 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using NUnit.Framework;
 
 namespace Hometask_1
 {
     [TestFixture]
-    public class Task_4
+    class Task_4
     {
-        public int getPairs(List<int> inputList, int target)
+        public int NumberOfPairs(int[] arr, int target = 5)
         {
-            int num = 0;
-            for (int i = 0; i < inputList.Count; i++)
+            var result = 0;
+            for (int i = 0; i < arr.Length - 1; i++)
             {
-                for (int j = i + 1; j < inputList.Count; j++)
-                {
-                    if (inputList[i] + inputList[j] == target)
-                    {
-                        num++;
-                    }
-                }
+                result += arr.Skip(i + 1).Where(number => arr[i] + number == target).ToArray().Length;
             }
-            return num;
+            return result;
         }
-        [Test]
-        public void getPairs1()
+        [TestCase(new int[] { 1, 3, 6, 2, 2, 0, 4, 5 }, 5, 4)]
+        [TestCase(new int[] { 1, 1, 1 }, 4, 0)]
+        [TestCase(new int[] { }, 1, 0)]
+        public void TestNumberOfPairs(int[] array, int target, int expected)
         {
-            Assert.AreEqual(4, getPairs(new List<int>() { 1, 3, 6, 2, 2, 0, 4, 5 }, 5));
-        }
-        [Test]
-        public void getPairs2()
-        {
-            Assert.AreEqual(0, getPairs(new List<int>() { 1, 3, 0 }, 5));
-        }
-        [Test]
-        public void getPairs3()
-        {
-            Assert.AreEqual(0, getPairs(new List<int>() { 3 }, 6));
+            var result = NumberOfPairs(array, target);
+            Assert.AreEqual(expected, result);
         }
     }
 }

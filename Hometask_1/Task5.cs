@@ -1,47 +1,58 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace Hometask_1
 {
     [TestFixture]
-    public class Task_5
+    class Task_5
     {
-        public string UpperAndSort(string guests)
+        private class InvitedPerson
         {
-            try
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public InvitedPerson(string str, char sep = ':')
             {
-                string[] str = guests.Split(';');
-                string[,] newStr = new string[str.Length, 2];
-                for (int i = 0; i < str.Length; i++)
-                {
-                    newStr[i, 0] = str[i].Split(':')[1];
-                    newStr[i, 1] = str[i].Split(':')[0];
-                    str[i] = newStr[i, 0] + ", " + newStr[i, 1];
-                }
-                Array.Sort<string>(str, new Comparison<string>((i1, i2) => i1.CompareTo(i2)));
-                string result = ("(" + string.Join(")(", str) + ")").ToUpper();
-                return result;
-            }
-            catch (IndexOutOfRangeException)
-            {
-                return
-                    "";
+                var split_str = str.Split(sep);
+                FirstName = split_str[0];
+                if (split_str.Length > 1)
+                    LastName = split_str[1];
+                else
+                    LastName = string.Empty;
             }
         }
-        [Test]
-        public void UpperAndSortTest1()
+        public string GetTransformedString(string str)
         {
-            String s = "Fred:Corwill;Wilfred:Corwill;Barney:TornBull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill";
-            String expected = "(CORWILL, ALFRED)(CORWILL, FRED)(CORWILL, RAPHAEL)(CORWILL, WILFRED)(TORNBULL, BARNEY)(TORNBULL, BETTY)(TORNBULL, BJON)";
-            Assert.AreEqual(expected, UpperAndSort(s));
+            var result = "";
+            var people_array = str.Split(';');
+            if (people_array[0] == string.Empty)
+                return string.Empty;
+            var invited_people = people_array.Select(s => new InvitedPerson(s));
+            var sorted_invited_people = invited_people.OrderBy(person => person.LastName.ToUpper()).ThenBy(person => person.FirstName.ToUpper());
+            foreach (var person in sorted_invited_people)
+                result += $"({person.LastName.ToUpper()}, {person.FirstName.ToUpper()})";
+            return result;
         }
         [Test]
-        public void UpperAndSortTest2()
+        public void Test1()
         {
-            String s = "               ";
-            String expected = "";
-            Assert.AreEqual(expected, UpperAndSort(s));
+            var expected =
+                "(CORWILL, ALFRED)(CORWILL, FRED)(CORWILL, RAPHAEL)(CORWILL, WILFRED)(TORNBULL, BARNEY)(TORNBULL, BETTY)(TORNBULL, BJON)";
+            var result =
+                GetTransformedString("Fred:Corwill;Wilfred:Corwill;Barney:TornBull;Betty:Tornbull;Bjon:Tornbull;Raphael:Corwill;Alfred:Corwill");
+            Assert.AreEqual(expected, result);
         }
+        [Test]
+        public void Test2()
+        {
+            var expected =
+                "";
+            var result =
+                GetTransformedString("");
+            Assert.AreEqual(expected, result);
+        }
+        
     }
 }
