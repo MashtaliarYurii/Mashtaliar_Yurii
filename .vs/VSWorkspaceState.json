@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Task_Selenium"
   ],
-  "SelectedNode": "\\Task_Selenium.sln",
+  "SelectedNode": "\\Task_Selenium\\UnitTest1.cs",
   "PreviewInSolutionExplorer": false
 }
