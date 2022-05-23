@@ -3,7 +3,6 @@ using System.Threading;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 
 namespace Task_Selenium
 {
@@ -12,17 +11,15 @@ namespace Task_Selenium
         IWebDriver webDriver;
         ChromeOptions options;
 
-        public Test_Selenium() {
-            options = new ChromeOptions();
-            options.UnhandledPromptBehavior = UnhandledPromptBehavior.Dismiss;
-            webDriver = new ChromeDriver(options);
-        }
         [SetUp]
         public void Setup()
         {
             //Entering the site
+            options = new ChromeOptions();
+            options.UnhandledPromptBehavior = UnhandledPromptBehavior.Dismiss;
+            webDriver = new ChromeDriver(options);
             webDriver.Navigate().GoToUrl("https://www.demoblaze.com/");
-
+            
             //Scenario_1_1
             IWebElement lnkLogin = webDriver.FindElement(By.LinkText("Log in"));
             lnkLogin.Click();
@@ -30,7 +27,7 @@ namespace Task_Selenium
             var txtUserName = webDriver.FindElement(By.Id("loginusername"));
             Thread.Sleep(100);
             var txtUserPass = webDriver.FindElement(By.Id("loginpassword"));
-            
+
             Thread.Sleep(100);
             txtUserName.SendKeys("Mashtaliar_Yurii");
             Thread.Sleep(100);
@@ -40,23 +37,10 @@ namespace Task_Selenium
             Thread.Sleep(100);
             lnkLogin2.Click();
         }
-        private bool Ñorrectness_Ñheck(By a, IWebDriver b)
-        {
-            try
-            {
-                b.FindElement(a);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
 
         [Test]
         public void Test()
         {
-
             //Scenario_1_2
             Thread.Sleep(1000);
             IWebElement lnkNotebook = webDriver.FindElement(By.LinkText("Laptops"));
