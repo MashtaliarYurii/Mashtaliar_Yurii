@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Yurii\\source\\repos\\MashtaliarYurii\\Mashtaliar_Yurii\\1\\Task_Selenium\\Task_Selenium.csproj": {}
+    "C:\\Users\\Yurii\\source\\repos\\Mashtaliar_Yurii\\Task_Selenium\\Task_Selenium.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Yurii\\source\\repos\\MashtaliarYurii\\Mashtaliar_Yurii\\1\\Task_Selenium\\Task_Selenium.csproj": {
+    "C:\\Users\\Yurii\\source\\repos\\Mashtaliar_Yurii\\Task_Selenium\\Task_Selenium.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Yurii\\source\\repos\\MashtaliarYurii\\Mashtaliar_Yurii\\1\\Task_Selenium\\Task_Selenium.csproj",
+        "projectUniqueName": "C:\\Users\\Yurii\\source\\repos\\Mashtaliar_Yurii\\Task_Selenium\\Task_Selenium.csproj",
         "projectName": "Task_Selenium",
-        "projectPath": "C:\\Users\\Yurii\\source\\repos\\MashtaliarYurii\\Mashtaliar_Yurii\\1\\Task_Selenium\\Task_Selenium.csproj",
+        "projectPath": "C:\\Users\\Yurii\\source\\repos\\Mashtaliar_Yurii\\Task_Selenium\\Task_Selenium.csproj",
         "packagesPath": "C:\\Users\\Yurii\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Yurii\\source\\repos\\MashtaliarYurii\\Mashtaliar_Yurii\\1\\Task_Selenium\\obj\\",
+        "outputPath": "C:\\Users\\Yurii\\source\\repos\\Mashtaliar_Yurii\\Task_Selenium\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Yurii\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -76,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

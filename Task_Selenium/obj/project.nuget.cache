@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "cIVwWdpZqlKZKriCZ3OvwK1VnRILPRS8q6OH5SHw4e/ucXtCRU1w3hjoGW3ZYDAJn/t3E5xYVaA+268cThlGVA==",
+  "dgSpecHash": "uoRURQ9MDDjz9bRepZWzMH0uLwY1l/NPg48QYZGXd+N4MbWHGY0YBQl+VQF6b6B4Yz8giVZ7FVdsu02Csw3Fzg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Yurii\\source\\repos\\MashtaliarYurii\\Mashtaliar_Yurii\\1\\Task_Selenium\\Task_Selenium.csproj",
+  "projectFilePath": "C:\\Users\\Yurii\\source\\repos\\Mashtaliar_Yurii\\Task_Selenium\\Task_Selenium.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Yurii\\.nuget\\packages\\microsoft.codecoverage\\17.2.0\\microsoft.codecoverage.17.2.0.nupkg.sha512",
     "C:\\Users\\Yurii\\.nuget\\packages\\microsoft.net.test.sdk\\17.2.0\\microsoft.net.test.sdk.17.2.0.nupkg.sha512",
