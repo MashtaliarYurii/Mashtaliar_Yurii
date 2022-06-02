@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\WebAPI",
+    "\\WebAPI\\WebAPI",
+    "\\WebAPI\\WebAPI\\obj",
+    "\\WebAPI\\WebAPI\\obj\\Debug",
+    "\\WebAPI\\WebAPI\\obj\\Release"
   ],
+  "SelectedNode": "\\WebAPI\\WebAPI\\UnitTest1.cs",
   "PreviewInSolutionExplorer": false
 }
